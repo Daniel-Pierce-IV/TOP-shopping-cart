@@ -4,23 +4,8 @@ import Filter from "../../enums/Filter";
 import productData from "../../data/ProductData";
 import ProductsPage from "./ProductsPage";
 
-jest.mock("../../enums/Filter", () => ({
-  DEFAULT: Symbol("DEFAULT"),
-  SOMETHING: Symbol("SOMETHING"),
-}));
-
-jest.mock("../../data/ProductData", () => [
-  {
-    name: "Product 1",
-    value: 10,
-    filters: [],
-  },
-  {
-    name: "Product 2",
-    value: 20,
-    filters: [Symbol("SOMETHING")],
-  },
-]);
+jest.mock("../../enums/Filter");
+jest.mock("../../data/ProductData");
 
 describe("ProductPage", () => {
   it("renders all filters", () => {

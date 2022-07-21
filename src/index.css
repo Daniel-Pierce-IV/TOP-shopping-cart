@@ -3,6 +3,17 @@
 @tailwind utilities;
 
 @font-face {
+  font-family: Givonic;
+  src: url("./fonts/givonic/Givonic-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Givonic;
+  font-weight: bold;
+  src: url("./fonts/givonic/Givonic-Black.ttf") format("truetype");
+}
+
+@font-face {
   font-family: Charles;
   src: url("./fonts/Charles_3.otf") format("opentype");
 }

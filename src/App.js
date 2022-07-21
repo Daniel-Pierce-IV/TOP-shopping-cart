@@ -10,7 +10,7 @@ const App = () => {
   const [currentFilter, setCurrentFilter] = useState(Filter.DEFAULT);
 
   return (
-    <div className="App h-full flex flex-col">
+    <div className="App h-full flex flex-col font-[Charles]">
       <NavBar />
 
       <Routes>

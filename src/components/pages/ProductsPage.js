@@ -1,39 +1,61 @@
+import { createRef, useEffect, useState } from "react";
+import FilterToProductsBG from "../../data/FilterToProductsBG";
 import productData from "../../data/ProductData";
 import Filter from "../../enums/Filter";
 import FilterListItem from "../FilterListItem";
 import ProductCard from "../ProductCard";
+import "./ProductsPage.css";
 
 const ProductsPage = ({ currentFilter, setFilter }) => {
+  const [heightIsSet, setHeightIsSet] = useState(false);
+
   const filterEnumAsArray = Object.values(Filter);
+  const gridRef = createRef();
+
+  const bgStyling = {
+    // Background is coordinated with the current filter
+    backgroundImage: `url(${FilterToProductsBG[currentFilter].foreground}), url(${FilterToProductsBG[currentFilter].background})`,
+    backgroundPosition: "left bottom, left",
+    backgroundSize: "auto, auto 100%",
+    backgroundAttachment: "fixed",
+    backgroundRepeat: "no-repeat",
+  };
+
+  const productElements = productData
+    .filter(
+      (e) =>
+        e.filters.includes(currentFilter) ||
+        currentFilter === Filter.DEFAULT ||
+        !currentFilter
+    )
+    .map((product, index) => <ProductCard key={index} {...product} />);
+
+  useEffect(() => {
+    // Ensures element itself is scrollable, but not the window
+    gridRef.current.style.maxHeight = `${gridRef.current.clientHeight}px`;
+    setHeightIsSet(true);
+  }, []);
 
   return (
-    <div className="grow px-16 py-8 flex gap-16">
-      <div className="flex flex-col">
-        <h2 className="text-3xl mb-4">Product Filters</h2>
-
-        <ul className="flex flex-col gap-2">
+    <div style={bgStyling} className="grow px-16 pt-32 flex justify-end">
+      <div className="w-[65%] flex flex-col gap-6">
+        <ul className="flex justify-end gap-10">
           {filterEnumAsArray.map((filter, index) => (
             <FilterListItem key={index} onClick={setFilter.bind(null, filter)}>
               {filter.description}
             </FilterListItem>
           ))}
         </ul>
-      </div>
 
-      <div
-        style={{ gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))" }}
-        className="grid grow gap-16 items-start max-h-full"
-      >
-        {productData
-          .filter(
-            (e) =>
-              e.filters.includes(currentFilter) ||
-              currentFilter === Filter.DEFAULT ||
-              !currentFilter
-          )
-          .map((product, index) => (
-            <ProductCard key={index} {...product} />
-          ))}
+        <div
+          ref={gridRef}
+          style={{
+            gridTemplateColumns: "repeat(auto-fill, minmax(384px, 1fr))",
+          }}
+          className="scroll-none pb-6 grow grid gap-8 overflow-auto justify-items-center"
+        >
+          {heightIsSet && productElements}
+        </div>
       </div>
     </div>
   );

@@ -17,87 +17,91 @@ const productData = [
   ProductFactory(
     "Wrist & Hand",
     "Taking your wrist game to the next level - pro style",
-    null,
+    2000,
     handImage,
     Filter.ARMS
   ),
   ProductFactory(
     "Shoulder",
     "Extendable muscle to bring you power like never before",
-    null,
+    2500,
     shoulderImage,
     Filter.ARMS
   ),
   ProductFactory(
     "Full Arm Assembly",
     "The complete Pro Arm Collection.",
-    null,
+    3750,
     armImage,
     Filter.ARMS
   ),
   ProductFactory(
     "Chest & Traps",
     "The starter kit",
-    null,
+    3250,
     backImage,
     Filter.BACK
   ),
   ProductFactory(
     "Neck",
     "Extra stability for the body's weakest link",
-    null,
+    1500,
     neckImage,
     Filter.BACK
   ),
   ProductFactory(
     "Spine",
     "Legs or back, lift with whatever you like",
-    null,
+    1750,
     spineImage,
     Filter.BACK
   ),
   ProductFactory(
     "Star",
     "Iconic design - perfect for the beginner",
-    null,
+    300,
     eyesStarImage,
     Filter.EYES
   ),
   ProductFactory(
     "Mobius",
     "Work and play - all on the go",
-    null,
+    450,
     eyesMobiusImage,
     Filter.EYES
   ),
   ProductFactory(
     "RX-10 Ultra",
     "Customizable components for everything you need",
-    null,
+    650,
     eyesUltraImage,
     Filter.EYES
   ),
   ProductFactory(
     "Steel Leg",
     "Durability and style - you can have it all",
-    null,
+    1200,
     legSteelImage,
     Filter.LEGS
   ),
   ProductFactory(
     "Titanium Leg",
     "The ultimate in durability",
-    null,
+    1500,
     legTitaniumImage,
     Filter.LEGS
   ),
   ProductFactory(
     "Carbon Leg",
     "Lightweight and as close to organic as you can get",
-    null,
+    2300,
     legCarbonImage,
     Filter.LEGS
   ),
 ];
 
+const productCount = productData.length;
+
 export default productData;
+
+export { productCount };

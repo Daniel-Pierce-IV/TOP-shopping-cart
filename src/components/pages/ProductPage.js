@@ -42,7 +42,7 @@ const ProductPage = ({ setCartItem }) => {
             style={{
               backgroundImage: `url(${product.image})`,
             }}
-            className="grow relative bg-contain bg-no-repeat bg-right before-styling before:bg-technolife-blue"
+            className="grow mask-styling relative bg-contain bg-no-repeat bg-right bg-technolife-blue"
           ></div>
 
           <div className="grow basis-0">
@@ -78,8 +78,6 @@ const ProductPage = ({ setCartItem }) => {
                   Add To Cart
                 </button>
               </div>
-
-              <div className="relative after:absolute after:-bottom-1 after:w-16 after:h-1 after:bg-technolife-blue"></div>
 
               <div className="grow flex justify-end items-end gap-4 select-none">
                 <Link to={`/products/${prevProductId()}`}>

@@ -1,6 +1,4 @@
-import star from "../img/products/eyes-star.png";
-
-const CartCard = () => {
+const CartCard = ({ product, quantity, setCartItem, removeCartItem }) => {
   const quantityClasses =
     "p-1 bg-gray-200 rounded-full hover:bg-technolife-blue hover:text-white";
 
@@ -16,26 +14,41 @@ const CartCard = () => {
     </svg>
   );
 
+  function decrementQuantity() {
+    setCartItem(product, quantity - 1);
+  }
+
+  function incrementQuantity() {
+    setCartItem(product, quantity + 1);
+  }
+
   return (
     <div className="h-48 p-4 border border-gray-300 bg-white shrink-0 flex gap-4">
-      <img src={star} alt="" className="h-full" />
+      <img src={product.image} alt="" className="h-full" />
 
       <div className="flex flex-col justify-center gap-4">
-        <span className="text-2xl">Product Name</span>
+        <span className="text-2xl">{product.name}</span>
 
         <div className="flex gap-12">
           <div className="flex items-center gap-4 select-none">
-            <button className={quantityClasses}>{minusSymbol}</button>
+            <button className={quantityClasses} onClick={decrementQuantity}>
+              {minusSymbol}
+            </button>
 
-            <span className="mt-1.5 min-w-[32px] text-center">Quantity</span>
+            <span className="mt-1.5 min-w-[32px] text-center">{quantity}</span>
 
-            <button className={quantityClasses}>{plusSymbol}</button>
+            <button className={quantityClasses} onClick={incrementQuantity}>
+              {plusSymbol}
+            </button>
           </div>
 
-          <div className="mt-1.5">Price</div>
+          <div className="mt-1.5">${product.value * quantity}</div>
         </div>
 
-        <button className="self-start text-gray-300 hover:text-red-600">
+        <button
+          className="self-start text-gray-300 hover:text-red-600"
+          onClick={removeCartItem.bind(null, product)}
+        >
           Remove
         </button>
       </div>

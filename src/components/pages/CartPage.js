@@ -4,8 +4,16 @@ import CartCard from "../CartCard";
 import CartSidebar from "../CartSidebar";
 import GrowingScroller from "../GrowingScroller";
 
-const CartPage = () => {
+const CartPage = ({ cart, setCartItem, removeCartItem }) => {
   const shippingCost = 50;
+  const cartAsArray = Object.values(cart);
+
+  function calcSubtotal() {
+    return cartAsArray.reduce(
+      (acc, item) => acc + item.product.value * item.quantity,
+      0
+    );
+  }
 
   return (
     <div
@@ -17,7 +25,7 @@ const CartPage = () => {
     >
       <div className="grow p-16 flex flex-col gap-8">
         <div className="flex justify-between items-center">
-          <div className="text-6xl">Cart (itemCount)</div>
+          <div className="text-6xl">Cart ({cartAsArray.length})</div>
 
           <Link
             to={"/products"}
@@ -29,9 +37,14 @@ const CartPage = () => {
 
         <GrowingScroller showScroll={false}>
           <div className="flex flex-col gap-4">
-            <CartCard />
-            <CartCard />
-            <CartCard />
+            {cartAsArray.map((item, i) => (
+              <CartCard
+                key={item.product.id}
+                {...item}
+                setCartItem={setCartItem}
+                removeCartItem={removeCartItem}
+              />
+            ))}
           </div>
         </GrowingScroller>
 
@@ -48,7 +61,7 @@ const CartPage = () => {
         </div>
       </div>
 
-      <CartSidebar shippingCost={shippingCost} />
+      <CartSidebar shippingCost={shippingCost} subtotal={calcSubtotal()} />
     </div>
   );
 };

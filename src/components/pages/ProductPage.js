@@ -8,7 +8,7 @@ import ChevronRight from "../ChevronRight";
 import ChevronUp from "../ChevronUp";
 import "./ProductPage.css";
 
-const ProductPage = () => {
+const ProductPage = ({ setCartItem }) => {
   const [quantity, setQuantity] = useState(1);
 
   const { id } = useParams();
@@ -71,7 +71,10 @@ const ProductPage = () => {
                   </div>
                 </div>
 
-                <button className="grow max-w-[330px] py-6 pb-3 px-7 text-3xl bg-black text-white hover:bg-technolife-blue">
+                <button
+                  className="grow max-w-[330px] py-6 pb-3 px-7 text-3xl bg-black text-white hover:bg-technolife-blue"
+                  onClick={setCartItem.bind(null, product, quantity)}
+                >
                   Add To Cart
                 </button>
               </div>

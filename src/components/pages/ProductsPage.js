@@ -4,7 +4,6 @@ import productData from "../../data/ProductData";
 import Filter from "../../enums/Filter";
 import FilterListItem from "../FilterListItem";
 import ProductCard from "../ProductCard";
-import "./ProductsPage.css";
 
 const ProductsPage = ({ currentFilter, setFilter }) => {
   const [heightIsSet, setHeightIsSet] = useState(false);

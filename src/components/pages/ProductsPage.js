@@ -1,15 +1,12 @@
-import { createRef, useEffect, useState } from "react";
 import FilterToProductsBG from "../../data/FilterToProductsBG";
 import productData from "../../data/ProductData";
 import Filter from "../../enums/Filter";
 import FilterListItem from "../FilterListItem";
+import GrowingScroller from "../GrowingScroller";
 import ProductCard from "../ProductCard";
 
 const ProductsPage = ({ currentFilter, setFilter }) => {
-  const [heightIsSet, setHeightIsSet] = useState(false);
-
   const filterEnumAsArray = Object.values(Filter);
-  const gridRef = createRef();
 
   const bgStyling = {
     // Background is coordinated with the current filter
@@ -29,12 +26,6 @@ const ProductsPage = ({ currentFilter, setFilter }) => {
     )
     .map((product, index) => <ProductCard key={index} {...product} />);
 
-  useEffect(() => {
-    // Ensures element itself is scrollable, but not the window
-    gridRef.current.style.maxHeight = `${gridRef.current.clientHeight}px`;
-    setHeightIsSet(true);
-  }, []);
-
   return (
     <div style={bgStyling} className="grow px-16 pt-32 flex justify-end">
       <div className="w-[65%] flex flex-col gap-6">
@@ -46,15 +37,16 @@ const ProductsPage = ({ currentFilter, setFilter }) => {
           ))}
         </ul>
 
-        <div
-          ref={gridRef}
-          style={{
-            gridTemplateColumns: "repeat(auto-fill, minmax(384px, 1fr))",
-          }}
-          className="scroll-none pb-6 grow grid gap-8 overflow-auto justify-items-center"
-        >
-          {heightIsSet && productElements}
-        </div>
+        <GrowingScroller showScroll={false}>
+          <div
+            style={{
+              gridTemplateColumns: "repeat(auto-fill, minmax(384px, 1fr))",
+            }}
+            className="pb-6 grid gap-8 justify-items-center"
+          >
+            {productElements}
+          </div>
+        </GrowingScroller>
       </div>
     </div>
   );

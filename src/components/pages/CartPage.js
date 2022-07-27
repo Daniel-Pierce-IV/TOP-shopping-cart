@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import backgroundImg from "../../img/products/backgrounds/eyes-background.png";
 import CartCard from "../CartCard";
 import CartSidebar from "../CartSidebar";
+import GrowingScroller from "../GrowingScroller";
 
 const CartPage = () => {
   const shippingCost = 50;
@@ -26,13 +27,13 @@ const CartPage = () => {
           </Link>
         </div>
 
-        <div className="grow relative">
-          <div className="absolute inset-0 overflow-auto scroll-none flex flex-col gap-4">
+        <GrowingScroller showScroll={false}>
+          <div className="flex flex-col gap-4">
             <CartCard />
             <CartCard />
             <CartCard />
           </div>
-        </div>
+        </GrowingScroller>
 
         <div className="flex gap-2 pt-2">
           <input

@@ -5,6 +5,7 @@ import NavBar from "./components/NavBar";
 import LandingPage from "./components/pages/LandingPage";
 import ProductsPage from "./components/pages/ProductsPage";
 import ProductPage from "./components/pages/ProductPage";
+import CartPage from "./components/pages/CartPage";
 
 const App = () => {
   const [currentFilter, setCurrentFilter] = useState(Filter.DEFAULT);
@@ -29,7 +30,7 @@ const App = () => {
           <Route path=":id" element={<ProductPage />} />
         </Route>
 
-        <Route path="cart" element={"Cart Page"} />
+        <Route path="cart" element={<CartPage />} />
       </Routes>
     </div>
   );

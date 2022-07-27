@@ -11,6 +11,11 @@ const App = () => {
   const [currentFilter, setCurrentFilter] = useState(Filter.DEFAULT);
   const [cart, setCart] = useState({});
 
+  const totalCartQuantity = Object.values(cart).reduce(
+    (acc, item) => acc + item.quantity,
+    0
+  );
+
   function setCartItem(product, quantity) {
     if (quantity >= 0) {
       setCart({
@@ -31,7 +36,7 @@ const App = () => {
 
   return (
     <div className="App h-full flex flex-col font-[Charles]">
-      <NavBar />
+      <NavBar cartCount={totalCartQuantity} />
 
       <Routes>
         <Route path="/" element={<LandingPage />} />

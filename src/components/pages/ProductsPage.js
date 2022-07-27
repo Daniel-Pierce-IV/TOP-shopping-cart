@@ -40,7 +40,7 @@ const ProductsPage = ({ currentFilter, setFilter }) => {
         <GrowingScroller showScroll={false}>
           <div
             style={{
-              gridTemplateColumns: "repeat(auto-fill, minmax(384px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fill, minmax(350px, 1fr))",
             }}
             className="pb-6 grid gap-8 justify-items-center"
           >
